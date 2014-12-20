@@ -15,7 +15,7 @@ public class MainActivity extends Activity {
 
 	public static final String EXTRA_MESSAGE = "com.example.test.MESSAGE";
 	public final int SELECT_PICTURE = 1;
-	
+
 	private String selectedImagePath;
 	private String filemanagerstring;
 
@@ -72,24 +72,20 @@ public class MainActivity extends Activity {
 
 				// MEDIA GALLERY
 				selectedImagePath = getPath(selectedImageUri);
-
-				// DEBUG PURPOSE - you can delete this if you want
-				if (selectedImagePath != null)
-					System.out.println(selectedImagePath);
-				else
-					System.out.println("selectedImagePath is null");
-				if (filemanagerstring != null)
-					System.out.println(filemanagerstring);
-				else
-					System.out.println("filemanagerstring is null");
-
+				Intent intent = new Intent(this,
+						DisplayMessageActivity.class);
 				// NOW WE HAVE OUR WANTED STRING
-				if (selectedImagePath != null)
+				if (selectedImagePath != null) {
 					System.out
 							.println("selectedImagePath is the right one for you!");
-				else
+					intent.putExtra(EXTRA_MESSAGE, selectedImagePath);
+					
+				} else {
 					System.out
 							.println("filemanagerstring is the right one for you!");
+					intent.putExtra(EXTRA_MESSAGE, filemanagerstring);
+				}
+				startActivity(intent);
 			}
 		}
 	}
